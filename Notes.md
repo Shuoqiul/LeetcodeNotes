@@ -17,3 +17,26 @@ First traverse the tree to build a dictionary between value and node. Add parent
 
 Time: First traversal O(n), then O(len(o_delete))
 Space: O(n) for dictionary, O(n) for changing the original tree to add one more pointer.
+
+### 7/17/2024
+
+！[2024-7-17](./img/2024-07-17.png)
+
+thoughts1: 
+
+maintain a window for each leaf node. store the path of previous leaf node in some structure. when facing new leaf node, compare to all path in the structure to find good leaf pairs.\
+runtime = traverse(n)*len(path)(lgn)*len(structure)(n). one solution is calculate the distance in O(1), or try to delete some far away leaf node that is no longer usable.
+
+thoughts2:
+
+find all leaf node in one stack. track their depth. if two node depth differs more than distance, then they have no chance to be good.\
+runtime: find leaf = o(n), compare is 2^distance likely to n\
+can we have more cleaver method to determine if some node is no need to maintain in stack?\
+distance >= 2+|depth difference of their parents|\
+any traversal that expands from some center? 
+
+Final thought:
+
+traverse through each node, keep a dictionary holding the number of leaves at depth x below this node. When a node have leaves on both left and right side, check whether there is any satisifying leaves.
+
+**for a tree issue, using recurring is always the first thought to solve problem in O(n)**
