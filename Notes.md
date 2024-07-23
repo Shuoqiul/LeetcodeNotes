@@ -65,3 +65,16 @@ Then I want to reduce the runtime. Here is the thought of 556ms:
 ![thoughts by 556ms](./img/2024-07-22-1.png)
 Only calculate the in-degree of each node. start from the root node where the in-degree is 0 at the start. Then when each time go in a children, decrease the in-degree of the children by 1. By this way, the root node will be add to the res first(including the isolated node where has no children). The next node that in-degree is decreased to zero is the tire 1 node, which make the result no need for another sort. If the indegree of one node is 0, add this node to the next DFS/BFS(given the if condition, these two is the same). After all the BFS search, the node inside a cycle has no way to reduce its in-degree to zero, so the node inside a cycle wont be added into the res. So we just need to judge the len of res to see if it was a cyclic graph.\
 Runtime O(|E|)
+
+
+### 7/23/2024
+
+![2024-7-23](./img/2024-07-23.png)
+
+by previous question, thought of using a binary search for the result. l=0,r=min(m,n), loop k to see if there can find a square of length k that satisfied the threshold. keep the l be the biggest satisfying value. This process takes O(lgn) time. Then the consideration is how to test whether k satisfied the threshold.\
+initially I thought of plain loop, it cost $(n-k)*(m-k)*k*k$ time, which is O(n^4).
+
+Daniel's thought:
+
+first loop through the matrix. build a matrix stands for the summation of the value to the up left of that position. Then the sum of square(i,j),(i+k,j+k) can be calculated as $sum(i+k,j+k)-sum(i,j+k)-sum(i+k,j)+sum(i,j)$. So the runtime can be depressed to O(n^2)\
+This is also a sense of DP.
