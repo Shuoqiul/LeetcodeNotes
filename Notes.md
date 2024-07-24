@@ -78,3 +78,22 @@ Daniel's thought:
 
 first loop through the matrix. build a matrix stands for the summation of the value to the up left of that position. Then the sum of square(i,j),(i+k,j+k) can be calculated as $sum(i+k,j+k)-sum(i,j+k)-sum(i+k,j)+sum(i,j)$. So the runtime can be depressed to O(n^2)\
 This is also a sense of DP.
+
+### 7/24/2024
+
+![2024-7-24](./img/2024-07-24.png)
+
+Very easy one liner. loop through each digit and do the mapping.
+```python
+d:=dict(zip(digits, map(str, mapping)))
+# digits='0123456789'
+```
+equal to
+```python
+d:=dict([(x,str(mapping[int(x)])) for x in digits])
+```
+the := operator is use for fit the claimation of usage of a local parameter in one line. the code is equal to
+```python
+d=dict(zip(digits, map(str, mapping)))
+return sorted(nums, key= lambda n: int(''.join(d[i] for i in str(n))))
+```
